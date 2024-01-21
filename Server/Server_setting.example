@@ -1,0 +1,27 @@
+# Install your PC cluster for realmachine or virtualbox
+machinetype = virtualbox
+
+#Domain for your PC cluster
+domainname = melcluster
+
+#For the internet interface card name, use "nmcli con" or "ip add" to show its name (if usb ifcard was used, it's better to use it for internet)
+if_internet = enp0s3
+#For the private interface card name
+if_private = enp0s8
+
+# IP for internet (if_internet), NAT for virtualbox(10.0.2.15, default IP, may be different)
+IP_address = 10.0.2.15
+
+# netmask for if_internet, also used for virtualbox  
+netmask = 255.255.255.0
+
+#gateway for if_internet (for virtualbox: 10.0.2.2)
+gateway = 10.0.2.2
+
+##You need to check your local IP provider for the following DNS information. 140.117.11.1 for NSYSU
+#If not available, 1.1.1.1 and 8.8.8.8 could be used
+dns_nameservers1 = 140.117.11.1 
+dns_nameservers2 = 8.8.8.8 
+
+#MTU for if_private (You need to check your switch setting first)
+MTU = 1500

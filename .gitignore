@@ -1,0 +1,10 @@
+*.dat
+*.out
+*.txt
+*.sout
+#diagnosis.pl
+slurm.conf
+gres.conf
+test*.pl
+*test.pl
+crontab_setting
