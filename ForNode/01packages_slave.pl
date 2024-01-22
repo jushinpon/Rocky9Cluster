@@ -16,15 +16,27 @@ if(!`grep 'ulimit -l unlimited' /etc/profile`){
 system(". /etc/profile");
 
 system("rm -rf /var/run/dnf.pid");
-system('dnf -y groupinstall "Development Tools"');
+
+
+system("sudo dnf -y update");
+system("dnf config-manager --set-enabled crb");
+system("dnf -y install epel-release");
+
+system("dnf -y groupinstall \"Development Tools\"");
+system(" dnf -y install git");
+system("dnf -y groupinstall \"Scientific Support\"");
+system("dnf -y groupinstall  \"System Tools\"");
+system("dnf -y install ansible-core");
+system("dnf -y groupinfo \"Security Tools\"");
+
 system("yum install 'dnf-command(config-manager)'");
 system("dnf install dnf-plugins-core -y");
 system("dnf config-manager --set-enable powertools");
-`dnf remove -y cockpit`;# not use this web manager tool for cluster
+`dnf remove -y cockpit`;# not use this web manager tool for cluster,"yp-tools", "ypbind" 
 my @package = ("vim", "wget", "net-tools", "epel-release", "htop", "make"
-			, "gcc-c++", "nfs-utils","yp-tools", "gcc-gfortran","psmisc","perl-Expect","gcc-gfortran","xorg-x11-server-Xorg","xorg-x11-xauth"
+			, "gcc-c++", "nfs-utils", "gcc-gfortran","psmisc","perl-Expect","gcc-gfortran","xorg-x11-server-Xorg","xorg-x11-xauth"
 			,"perl-MCE-Shared","perl-Parallel-ForkManager","tmux","perl-CPAN"
-			, "ypbind" , "rpcbind","xauth","oddjob-mkhomedir","perl-Statistics-Descriptive","libibverbs"
+			, "rpcbind","xauth","oddjob-mkhomedir","perl-Statistics-Descriptive","libibverbs"
 			,"libibverbs-utils","infiniband-diags","perftest");
 system ("dnf -y install perl* --nobest --skip-broken");# for perl* only
 for (@package){system("dnf -y install $_");}
@@ -50,9 +62,9 @@ system("systemctl restart sshd");
 system("killall -9 dnf");
 system("systemctl restart sshd");
 # disable automatic updating
-system("systemctl stop dnf-automatic");
-system("systemctl disable dnf-automatic");
-system("dnf remove dnf-automatic -y");
+#system("systemctl stop dnf-automatic");
+#system("systemctl disable dnf-automatic");
+#system("dnf remove dnf-automatic -y");
 system("systemctl stop dnf-makecache.timer");
 system("systemctl disable dnf-makecache.timer");
 

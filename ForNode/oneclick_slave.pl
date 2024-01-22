@@ -6,8 +6,8 @@
 use strict;
 use warnings;
 
-system("dnf -y install network-scripts");
-if($?){die "no network-scripts is installed!\n";}
+#system("dnf -y install network-scripts");
+#if($?){die "no network-scripts is installed!\n";}
 #system("systemctl restart NetworkManager");
 system("systemctl enable NetworkManager");
 system("systemctl stop firewalld");
@@ -24,8 +24,8 @@ print "NIC: $1\n";
 if ($1 eq ""){die "No NIC exits\n";}
 
 my @node_array = ("00interfaces_slave.pl","01packages_slave.pl"
-			   ,"02hosts_slave.pl","03NFS_slave.pl"
-			   ,"04NIS_slave.pl");
+			   ,"02hosts_slave.pl","03NFS_slave.pl");
+			   #,"04NIS_slave.pl");
 for (@node_array){
 	system("perl $_");
 	if($?){die "conduct $_ failed!!!\n";}
@@ -47,16 +47,16 @@ print $Check "\n\n *** If you see master:/home and master:/opt, NFS works for th
 print $Check "========****End of NFS test\n\n";
 
 print $Check "\n\n===============================\n";
-print $Check "****NIS test\n";
-print $Check "===yptest:\n";
-my $temp1 = `yptest`;
-print $Check "$temp1\n";
-print  $Check "\n\nIf you see the 9 test results, the nis setting is ok\n";
-print $Check "===ypwhich:\n";
-my $temp2 = `ypwhich`;
-print $Check "$temp2\n";
-print  $Check "\n\nIf you see the 9 test results, the nis setting is ok\n";
-print  $Check "========****End of NIS test\n\n";
+#print $Check "****NIS test\n";
+#print $Check "===yptest:\n";
+#my $temp1 = `yptest`;
+#print $Check "$temp1\n";
+#print  $Check "\n\nIf you see the 9 test results, the nis setting is ok\n";
+#print $Check "===ypwhich:\n";
+#my $temp2 = `ypwhich`;
+#print $Check "$temp2\n";
+#print  $Check "\n\nIf you see the 9 test results, the nis setting is ok\n";
+#print  $Check "========****End of NIS test\n\n";
 print $Check "\n\n***** date check******\n";
 my $temp3 = `date`;
 print $Check "****date check: $temp3\n\n";

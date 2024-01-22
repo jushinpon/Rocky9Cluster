@@ -59,10 +59,11 @@ system("nisdomainname $ServerSetting{domainname}");
 ##intra setting
 my $innerf = $ServerSetting{if_private};
 my $inner_ip = "192.168.0.101";
-
-system("nmcli con mod $innerf ipv4.method manual ipv4.addresses $inner_ip/24");# ipv4.gateway $gw");
-system("nmcli con mod $innerf connection.autoconnect yes");
-system("nmcli con down $innerf && nmcli con up $innerf");
+if($ServerSetting{machinetype} ne "virtualbox"){
+	system("nmcli con mod $innerf ipv4.method manual ipv4.addresses $inner_ip/24");# ipv4.gateway $gw");
+	system("nmcli con mod $innerf connection.autoconnect yes");
+	system("nmcli con down $innerf && nmcli con up $innerf");
+}
 #
 #private interface setting
 #`echo "BOOTPROTO=static" > /etc/sysconfig/network-scripts/ifcfg-$ServerSetting{if_private}`;
@@ -151,9 +152,9 @@ system("timedatectl set-timezone Asia/Taipei");## setting timezone
 #system (" bash install.sh");
 
 # disable automatic updating
-system("systemctl stop dnf-automatic");
-system("systemctl disable dnf-automatic");
-system("dnf remove dnf-automatic -y");
+#system("systemctl stop dnf-automatic");
+#system("systemctl disable dnf-automatic");
+#system("dnf remove dnf-automatic -y");
 system("systemctl stop dnf-makecache.timer");
 system("systemctl disable dnf-makecache.timer");
 # setting parameters in /etc/profile and then source it

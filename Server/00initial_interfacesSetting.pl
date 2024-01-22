@@ -37,11 +37,14 @@ my $if = $ServerSetting{if_internet};
 my $int_ip = $ServerSetting{IP_address};
 
 #internet setting
-#if($ServerSetting{machinetype} ne "virtualbox"){
-system("nmcli con mod $if ipv4.method manual ipv4.addresses $int_ip/24 ipv4.gateway $gw");
-system("nmcli con mod $if ipv4.dns \"$ds1,$ds2\"");
-system("nmcli con mod $if connection.autoconnect yes");
-system("nmcli con down $if && nmcli con up $if");
+if($ServerSetting{machinetype} ne "virtualbox"){
+	#`nmcli con add type ethernet con-name $if ifname $if`;
+	system("nmcli con mod $if ipv4.never-default no");
+	system("nmcli con mod $if ipv4.method manual ipv4.addresses $int_ip/24 ipv4.gateway $gw");
+	system("nmcli con mod $if ipv4.dns \"$ds1,$ds2\"");
+	system("nmcli con mod $if connection.autoconnect yes");
+	system("nmcli con down $if && nmcli con up $if");
+}
 
 system("sudo dnf -y update");
 system("dnf config-manager --set-enabled crb");
@@ -86,7 +89,7 @@ if ($GetIP_file eq "yes"){
       unlink("./Nodes_IP.dat");
       open my $ss,">./Nodes_IP.dat";
      
-      for (2..5){
+      for (2..50){
       	my $temp = "192.168.0.$_";
 		chomp $temp;  
       	system("ping -c 1 $temp");
