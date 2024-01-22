@@ -75,8 +75,19 @@ system ("$cmd --permanent --zone=internal --add-service=rpc-bind");
 system ("$cmd --permanent --zone=internal --add-service=mountd");
 system ("$cmd --permanent --zone=internal --add-source=192.168.0.0/24");#:toaddr=192.168.0.0/24");
 system("firewall-cmd --zone=external --add-port=139/tcp --permanent"); # for samba
-`firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -s 192.168.0.0/24 -j ACCEPT`;
+#`firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -s 192.168.0.0/24 -j ACCEPT`;
+system("firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -s 192.168.0.0/24 -j ACCEPT");
 system ("$cmd --reload"); #reload
+
+
+system("$cmd --new-policy internal-external --permanent");
+system("$cmd --reload");
+system("$cmd --policy internal-external --add-ingress-zone=internal --permanent");
+system("$cmd --policy internal-external --add-egress-zone=external --permanent");
+system("$cmd --policy internal-external --set-target=ACCEPT --permanent");
+system("$cmd --reload");
+system("$cmd --info-policy internal-external")
+
 #for (2..30){system ("$cmd --zone=external --add-forward-port=port=1122:proto=tcp:toport=22:toaddr=192.168.0.$_ --permanent");}
 #system ("$cmd --reload"); #reload
 #system ("$cmd --permanent --zone=external --change-interface=$ServerSetting{if_internet}");#change zone to block
