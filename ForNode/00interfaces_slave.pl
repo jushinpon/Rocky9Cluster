@@ -114,6 +114,16 @@ system("nmcli con down $if && nmcli con up $if");
 
 #system('systemctl restart NetworkManager');
 #system("killall -9 yum");
+system("sudo dnf -y update");
+system("dnf config-manager --set-enabled crb");
+system("dnf -y install epel-release");
+
+system("dnf -y groupinstall \"Development Tools\"");
+system(" dnf -y install git");
+system("dnf -y groupinstall \"Scientific Support\"");
+system("dnf -y groupinstall  \"System Tools\"");
+system("dnf -y install ansible-core");
+system("dnf -y groupinfo \"Security Tools\"");
 system("dnf install -y chrony");#time sync
 system("systemctl start chronyd");#time sync
 system("systemctl enable chronyd");#time sync
