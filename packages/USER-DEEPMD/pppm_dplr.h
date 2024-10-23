@@ -1,17 +1,14 @@
+// SPDX-License-Identifier: LGPL-3.0-or-later
 #ifdef KSPACE_CLASS
-
-KSpaceStyle(pppm / dplr, PPPMDPLR)
-
+// clang-format off
+KSpaceStyle(pppm/dplr, PPPMDPLR)
+// clang-format on
 #else
 
 #ifndef LMP_PPPM_DPLR_H
 #define LMP_PPPM_DPLR_H
 
-#ifdef HIGH_PREC
 #define FLOAT_PREC double
-#else
-#define FLOAT_PREC float
-#endif
 
 #include <iostream>
 #include <vector>

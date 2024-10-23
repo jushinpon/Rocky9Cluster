@@ -30,10 +30,10 @@ my $Dir4download = "$packageDir/slurm_download"; #the directory we download slur
 #my $pmix_installPath = "/opt/pmix/3.1";
 
 # slurm for slave
-#my $currentVer = "slurm-22.05.7.tar.bz2";#***** the latest version of this package (check the latest one if possible)
-my $currentVer = "slurm-20.11.7.tar.bz2";#***** the latest version of this package (check the latest one if possible)
-#my $unzipFolder = "slurm-22.05.7";#***** the latest version of this package (check the latest one if possible)
-my $unzipFolder = "slurm-20.11.7";#***** the latest version of this package (check the latest one if possible)
+my $currentVer = "slurm-22.05.7.tar.bz2";#***** the latest version of this package (check the latest one if possible)
+#my $currentVer = "slurm-20.11.7.tar.bz2";#***** the latest version of this package (check the latest one if possible)
+my $unzipFolder = "slurm-22.05.7";#***** the latest version of this package (check the latest one if possible)
+#my $unzipFolder = "slurm-20.11.7";#***** the latest version of this package (check the latest one if possible)
 my $buildPath = "/root/slurm";# the upper level path to configure, make, and install slurm
 
 # stop old slurm, and uninstall slurm 
@@ -59,8 +59,7 @@ if($?){die "No file to copy\n";}
 
 my @slurm_pack = qw(openssl openssl-devel pam-devel numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel 
 rrdtool-devel bzip2-devel zlib-devel ncurses-devel fribidi man2html libibmad libibumad perl-ExtUtils-MakeMaker perl-DBI  perl-DBD-SQLite
-wget python3);
-
+wget python3 dbus-devel);
 
 for (@slurm_pack){
 	system("dnf -y install $_");

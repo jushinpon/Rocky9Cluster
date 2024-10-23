@@ -21,11 +21,12 @@ my %nodes = (
     182 => [1..24],
     186 => [1..7],
     190 => [1..3],
-    195 => [1..7]
+    195 => [1..7],
+    166 => [1..7],
     );
 chomp @ARGV;    
 #my $what2do = "$ARGV[0]";
-my $what2do = "echo \'shutdown -h now\' | at 7:50 AM today";
+my $what2do = "echo \'shutdown -h now\' | at 5:30 PM 09/19/2024";
 #print "$ARGV[0]\n";
 #die;
 my $ip = `/usr/sbin/ip a`;    

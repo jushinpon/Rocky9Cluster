@@ -7,12 +7,12 @@ use Parallel::ForkManager;
 use Cwd;
 
 my %nodes = (
-    i9 => [6],
-    i7 => [20..24]
+    #i9 => [6],
+    i7 => [5]
 );
 my %disable = (
-    i9 => [16..23],
-    i7 => [16..19]
+    #i9 => [16..23],
+    i7 => [16..23]
 
 );
 my @i9nodes = (6);#i9

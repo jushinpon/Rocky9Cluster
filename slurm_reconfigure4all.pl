@@ -7,9 +7,9 @@ use Parallel::ForkManager;
 use MCE::Shared;
 use Cwd; #Find Current Path
 
-`cp /root/Centos8ClusterScripts_20210404/Server/slurm.conf /usr/local/etc/`; # for slurm reconfig
-`cp /root/Centos8ClusterScripts_20210404/Server/cgroup.conf /usr/local/etc/`; # for slurm reconfig
-`cp /root/Centos8ClusterScripts_20210404/Server/slurmdbd.conf /usr/local/etc/`; # for slurm reconfig
+`cp /root/Rocky9Cluster/Server/slurm.conf /usr/local/etc/`; # for slurm reconfig
+`cp /root/Rocky9Cluster/Server/cgroup.conf /usr/local/etc/`; # for slurm reconfig
+`cp /root/Rocky9Cluster/Server/slurmdbd.conf /usr/local/etc/`; # for slurm reconfig
 #`rm -f /usr/local/etc/slurmdbd.conf`; # for slurm reconfig
 `chown root:root  /usr/local/etc/slurm.conf`;
 `chmod 644 /usr/local/etc/slurm.conf`;
@@ -36,7 +36,8 @@ my %nodes = (
     182 => [1..24],
     #182 => [1..4,6..15,17..24],
     186 => [1..7],
-    190 => [1..3]
+    190 => [1..3],
+    166 => [1..7]
     );
 
 my $ip = `/usr/sbin/ip a`;    

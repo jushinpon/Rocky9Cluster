@@ -81,6 +81,7 @@ system("make install");
 `rm -rf USER-DEEPMD`;
 system("make lammps");
 chdir("$Dir4download/deepmd-kit");# cd to this dir for downloading the packages
+system("chmod -R 755 ./");
 print "\n***ls /opt/deepmd_lammpslib\n\n";
 system("ls /opt/deepmd_lammpslib");
 #/home/packages/deepMD/deepmd-kit/source/build/USER-DEEPMD

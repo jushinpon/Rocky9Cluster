@@ -21,11 +21,7 @@ my $lspci = 'lspci|grep NV';
 my $lspci_check = "yes";
 my $nvacc_check = "yes";
 my %nodes = (
-    161 => [1..42],#1,3,39..
-    #182 => [1..4,6..15,17..24],
-    182 => [1..24],
-    #186 => [1..7],
-    #190 => [1..3]
+    166 => [1..6],#1,3,39..
     );
 
 my $ip = `/usr/sbin/ip a`;    
@@ -36,6 +32,7 @@ $cluster =~ s/^\s+|\s+$//;
 my @allnodes = @{$nodes{$cluster}};#all possible nodes including those without service
 my @nodes;
 my @nodeIPs;
+`touch scptest.dat`;
 for (@allnodes){#filtering the good ones
 #$pm->start and next;
     my $nodeindex=sprintf("%02d",$_);

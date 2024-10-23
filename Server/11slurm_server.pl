@@ -100,6 +100,8 @@ system("dnf install -y chrony");#time sync
 system("systemctl start chronyd");#time sync
 system("systemctl enable chronyd");#time sync
 system("timedatectl set-timezone Asia/Taipei");## setting timezone
+system("dnf install dbus-devel -y");# for CGroup
+
 #=big
 
 
